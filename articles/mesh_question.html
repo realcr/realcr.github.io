@@ -1,0 +1,302 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-56550342-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+    <link rel="stylesheet" type="text/css" 
+	href="../code_highlight.css"/>
+
+    <link rel="stylesheet" type="text/css"
+        href="../page_style.css"/>
+
+    
+	
+	
+
+	<title>FreedomLayer | Articles | The Mesh Question</title>
+	
+
+
+
+<style type="text/css">
+
+#header {
+    text-align:center;
+    width:60em;
+    clear: both; margin: 0 auto; 
+    
+}
+
+#nav {
+    text-align:center;
+    width:60em;
+    clear: both; margin: 0 auto; 
+    padding-bottom:25px;
+}
+
+#content {
+    width:48em;
+    /* Probably center: */
+    clear: both; 
+    margin: 0 auto; 
+}
+
+#footer {
+    padding-top:25px;
+    text-align:center;
+    clear:both;
+    margin: 0 auto;
+}
+#copyright_notice {
+    font-size:50%;
+}
+
+#email_address {
+    color:#808080;
+}
+</style> 
+
+</head>
+<body>
+
+<div id="header">
+<h1>Freedom Layer</h1>
+</div>
+<div id="nav">
+    
+    <nav>
+    <a href="../index.html">Home</a> |
+    <a href="../pages/links.html">Links</a> |
+    <a href="../blog_index.html">Blog</a> |
+    <a href="../articles_index.html">Articles</a> |
+    <a href="">About</a>
+    </nav>
+
+
+</div>
+<div id="content">
+    
+	
+	
+
+	<h1>Articles</h1>
+	<h2>The Mesh Question</h2>
+	<h3>Abstract</h3>
+
+<p>We discuss motivation for creating a distributed network instead or on top of
+the internet. Then we write down a list of specific requirements from this
+network. Finally we introduce the Flooding idea as a naive solution for this
+problem, and explain why it won't do.</p>
+<h3>Motivation for change</h3>
+
+<p>In <a href="intro_internet.html">Intro to the Internet</a>
+we generally discussed how the internet works, and some of the drawbacks of the
+current situation. I remind you the main ones: </p>
+<ol>
+<li>
+<p>Addressing - A usual participant in the internet usually has no control over his
+    address. It is assigned to him. In most cases it also changes from time to
+    time. </p>
+</li>
+<li>
+<p>NATs - Most of the computers in the internet these days are behind a NAT.
+    If two computers are each behind a NAT, they might experience great
+    difficulty in the task of initiating conversation. (Though some ad hoc
+    methods exist today today. See <a href="http://en.wikipedia.org/wiki/STUN">Stun</a> as
+    an example.)</p>
+</li>
+<li>
+<p>Operators Greed - The Internet is hierarchical, which gives much power to
+    its operators. They might be tempted to find new and interesting ways to
+    get more money from the end users of the Internet.</p>
+</li>
+<li>
+<p>Privacy and Censorship: The hierarchical structure of the internet causes a
+    situation where much traffic is routed through few computers. The owners of
+    those computers can leverage their advantage to read end users traffic or
+    censor specific content.</p>
+</li>
+</ol>
+<h3>The search for alternatives</h3>
+
+<p>While some work on solutions inside the Internet itself to solve some of the
+issues presented above, it might be interesting to discuss an alternative
+structure of connecting computers together.</p>
+<p>The main idea proposed in this project is the creation of a new network with a
+different structure, that will serve the same purposes as the original
+Internet.</p>
+<p>As many issues that we mentioned before relate to the hierarchial structure of
+the Internet, we will avoid it. We will try to find some other more
+decentralized structure, where all the computers have more or less a symmetric
+role in the network. This kind of network is sometimes referred to as a <a href="http://en.wikipedia.org/wiki/Mesh_networking">mesh
+network</a>.</p>
+<p>We will also want to utilize the current infrastructure of the Internet, as it
+is already there, and it works. One idea would be to start a new network on the
+Internet itself, and slowly take it out.</p>
+<p>Next, we care about security. The Internet was built in the <a href="http://en.wikipedia.org/wiki/Internet#History">sixties and
+seventies</a>, and its creators
+didn't expect it to be deployed on all the computers in the world. They didn't
+design it with security in mind - They just wanted it to work.</p>
+<p>Finally, we want the new network to be efficient, or maybe - scalable. We want
+it to be able to connect all the computers in the world, and still have good
+performance. Performance that is comparable with today's Internet.</p>
+<h3>Isolating the question</h3>
+
+<p>We have a \(n\) computers scattered around the world. (Or maybe in some other
+places, it you like). \(n\) is a large number. You may assume \(n = 
+2^{40}\). We want to wire them somehow and choose a program that
+all of them run (The same program for all of them!), so that we get the
+following properties:</p>
+<ul>
+<li>
+<p><strong>Addressing</strong>: We can give names or addresses to different computers on
+  the network. Then those names could be used to initiate communications with
+  remote computers on the network.</p>
+</li>
+<li>
+<p><strong>Routability</strong>: We are able to send messages to remote computers on the network,
+  given their address. Those messages arrive with some constant high enough
+  probability, in amount of time poly logarithmic in \(n\). 
+  (\(O(P(log n))\) where \(P\) is some non evil Polynomial).</p>
+</li>
+<li>
+<p><strong>Symmetry</strong>: All the computers in the network have the same role, or at least
+  the potential to be in the same role. All the computers in the network run
+  the same program.</p>
+</li>
+<li>
+<p><strong>Scalability</strong>: Sending a message in the network disturbs no more than \(P(log
+  n)\) computers. Basically it means that routing a message in the network can
+  not involve too many computers in the network.</p>
+</li>
+<li>
+<p><strong>Network Justice</strong>: A computer in the network that sends lots of data will not
+  be able to disturb other computers in the network to send and receive
+  messages. (Of course we will have to define somehow what is lots of data,
+  though this is just a general idea of a property that we want).</p>
+</li>
+<li>
+<p><strong>Security</strong>: Given an adversary that has limited computing power and
+  bandwidth, the network will keep working and all the participants will be
+  able to continue their life in the network normally. (This is a bit vague,
+  but we will discuss it in the future. It's hard to discuss security without 
+  having a system).</p>
+</li>
+</ul>
+<p>There are some other things that will be nice to have. We would like to be able
+to deal with <a href="http://en.wikipedia.org/wiki/Denial-of-service_attack">Denial Of Service
+(DoS)</a> in some way.</p>
+<p>This description is far from perfect (It is not even close to being formal),
+though it is a start, and we can work with it at this point. 
+As a summary, if somebody on the street asks you what I
+search for, it would be a <strong>secure distributed and scalable mesh network</strong>.</p>
+<h3>First Naive solution</h3>
+
+<p>Like every good researcher, we begin by trying a few simple solutions to the problem.</p>
+<p>In all the following solutions we will begin by wiring every computer to a few
+computers close to him (Maybe geographically). We call those few computers
+close to him immediate <strong>neighbours</strong>, or just neighbours. Regarding the
+participants of the network - As they might be pretty general entities, we
+sometimes call them <strong>nodes</strong> instead of computers.</p>
+<p>We will usually wonder how to send a message from some random node \(A\) to
+another random node \(B\) on the network, given that \(A\) knows the address of
+\(B\). (How \(A\) knows \(B\)'s address from the first place is another
+question that we are going to deal with later, don't worry about it now).</p>
+<p><img class="wimage"
+src="mesh_question/a_to_b.svg"/>
+(A generic schema of a mesh network. We want to send a message from \(A\) to
+\(B\).)<br/><br/></p>
+<h4>Flooding</h4>
+
+<p>We program every node (Computer) in the network to forward every message it
+gets to all of his neighbors.</p>
+<p>To avoid loops, every node will remember the messages that it sees somehow,
+and if he gets again a message that he has already seen, he will not forward it
+again.</p>
+<p>Let \(A,B\) be two nodes in the network. We want to send a message from
+\(A\) to \(B\). To do that, \(A\) will send the message to all of his
+neighbours. In turn, as we programmed all those nodes, every nodes that
+gets the message will forward it to all of his neighbours, and so on.
+Eventually the message will arrive at \(B\).</p>
+<p>This solution will not be enough for us, because it is not scalable. Note that
+sending a message from \(A\) to \(B\) involves all the nodes in the
+network. This means that as a node sitting in this network, you will have
+to process every message that every node sends! This is too much for large
+amount of network participants.</p>
+<p>Flooding is one of the oldest tricks in the book. Although it is considered to
+be not very scalable, it is a very common solution. (See for example
+<a href="https://bitcoin.org/">bitcoin</a> or
+<a href="http://en.wikipedia.org/wiki/Gnutella">Gnutella</a>)</p>
+<p>The Flooding solution has some features that are hard to achieve in other
+methods:</p>
+<ul>
+<li>
+<p>Flooding is very simple to design and program. No special rules, just forward
+  every message to all of your neighbors.</p>
+</li>
+<li>
+<p>Flooding manages to route a message to its destination with a very high
+  probability. Also, almost any addressing scheme will work with flooding, as
+  every message arrives at all the nodes in the network.</p>
+</li>
+<li>
+<p>Flooding has important security features. For example: It is very hard for an
+  adversary to block a node from recieving a message destined to him. (Bitcoin,
+  for example, relies on this feature for its security).</p>
+</li>
+</ul>
+<h3>Summary</h3>
+
+<p>We made some progress in defining the kind of network we want, and introduced
+the Flooding solution. We also explained why it will not be suitable as a
+solution to our problem.</p>
+
+
+</div>
+<div id="footer">
+    
+
+<div id="email_address">real.flayer(&)outlook.com</div>
+<div id="copyright_notice">
+<br/><span
+xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Freedom Layer</span>
+is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.
+
+</div>
+
+</div>
+
+</body>
+</html>
+
+
+
