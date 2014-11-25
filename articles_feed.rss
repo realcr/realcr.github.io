@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 
 
 
@@ -16,6 +16,7 @@
         <item>
         <title>Intro to the Internet and current issues</title>
         <link>http://www.freedomlayer.org/articles/intro_internet.html</link>
+	<guid>http://www.freedomlayer.org/articles/intro_internet.html</guid>
         <description>General words about the current structure of the internet, and some issues thatarise from that structure.</description>
         <author>real</author>
         </item>
@@ -23,6 +24,7 @@
         <item>
         <title>The Mesh Question</title>
         <link>http://www.freedomlayer.org/articles/mesh_question.html</link>
+	<guid>http://www.freedomlayer.org/articles/mesh_question.html</guid>
         <description>General introduction to the Mesh question: How to connect a few computers together in a symmetric way to obtain Internet like communication.</description>
         <author>real</author>
         </item>
@@ -30,6 +32,7 @@
         <item>
         <title>Intro to Distributed Hash Tables (DHTs)</title>
         <link>http://www.freedomlayer.org/articles/dht_intro.html</link>
+	<guid>http://www.freedomlayer.org/articles/dht_intro.html</guid>
         <description>How to keep in touch with the whole world, remembering only a few phone numbers?</description>
         <author>real</author>
         </item>
@@ -37,6 +40,7 @@
         <item>
         <title>Stabilizing Chord</title>
         <link>http://www.freedomlayer.org/articles/chord_stabilize.html</link>
+	<guid>http://www.freedomlayer.org/articles/chord_stabilize.html</guid>
         <description>General ideas about keeping the chord structure connected</description>
         <author>real</author>
         </item>

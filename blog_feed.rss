@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 
 
 
@@ -16,6 +16,7 @@
         <item>
         <title>First post</title>
         <link>http://www.freedomlayer.org/blog/first_post.html</link>
+	<guid>http://www.freedomlayer.org/blog/first_post.html</guid>
         <description>First blog post on Freedom Layer</description>
         <author>real</author>
         </item>
