@@ -1,0 +1,24 @@
+
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+
+<title>Freedom Layer Articles</title>
+<link>http://www.freedomlayer.org/</link>
+<description>Freedom Layer's Articles Feed</description>
+<language>en-US</language>
+
+
+
+
+        <item>
+        <title>First post</title>
+        <link>http://www.freedomlayer.org/blog/first_post.html</link>
+        <description>First blog post on Freedom Layer</description>
+        <author>real</author>
+        </item>
+
+</channel>
+</rss>
