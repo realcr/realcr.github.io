@@ -47,5 +47,13 @@
         <author>real</author>
         </item>
 
+        <item>
+        <title>Basic DHT security concepts</title>
+        <link>http://www.freedomlayer.org/articles/dht_basic_security.html</link>
+	<guid>http://www.freedomlayer.org/articles/dht_basic_security.html</guid>
+        <description>Basic ideas regarding the security of a DHT.</description>
+        <author>real</author>
+        </item>
+
 </channel>
 </rss>
