@@ -14,6 +14,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -517,9 +518,10 @@ actually be \(s\), even if \(log(n)\) is much smaller.</p>
 they can contact each other quickly, and at the same time each node doesn't have to
 remember too many addresses of other nodes.</p>
 <p>The construct we have described is related to an idea called <a href="http://en.wikipedia.org/wiki/Chord_(peer-to-peer)">The Chord
-DHT</a>. You can find the
-original article
-<a href="http://pdos.csail.mit.edu/papers/chord:sigcomm01/chord_sigcomm.pdf">here</a></p>
+DHT</a>. You are encouraged to
+check the original article: <a href="http://pdos.csail.mit.edu/papers/chord:sigcomm01/chord_sigcomm.pdf">Chord: A scalable Peer-to-peer Lookup Service for
+internet
+Applications</a>.</p>
 <h3>Distributed Hash Tables (DHTs)</h3>
 
 <p>Lets discuss an important use case for the structure we have found so far.
@@ -608,7 +610,10 @@ other possible designs for DHT which we haven't talked about. Our space of
 names was a ring, with a distance function of walking clockwise. There are
 other spaces with different distance functions that give nice results. One
 notable example is the <a href="http://en.wikipedia.org/wiki/Kademlia">Kademlia DHT</a>,
-which uses XOR as a metric.</p>
+which uses XOR as a metric. You can (And probably should) read the original
+Kademlia article: <a href="http://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf">Kademlia: A peer-to-peer Information System based on the XOR
+metric</a>,
+by Petar Maymounkov and David Mazières.</p>
 <p>We discussed the problem generally, but we didn't address a few important
 issues. We didn't address stability issues (What happens if some node on the
 way goes offline just when we want to search for some key?) and security
