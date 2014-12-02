@@ -55,5 +55,13 @@
         <author>real</author>
         </item>
 
+        <item>
+        <title>Sqrt(n) mesh routing</title>
+        <link>http://www.freedomlayer.org/articles/sqrt_n_routing.html</link>
+	<guid>http://www.freedomlayer.org/articles/sqrt_n_routing.html</guid>
+        <description>Routing messages in a fast mixing mesh network by making every node maintain \(\sqrt{n\log{n}}\) virtual connections.</description>
+        <author>real</author>
+        </item>
+
 </channel>
 </rss>
