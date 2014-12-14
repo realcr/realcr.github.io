@@ -63,6 +63,13 @@
         <author>real</author>
         </item>
 
+        <item>
+        <title>Experimenting with Virtual DHT Routing</title>
+        <link>http://www.freedomlayer.org/articles/exp_virtual_dht_routing.html</link>
+	<guid>http://www.freedomlayer.org/articles/exp_virtual_dht_routing.html</guid>
+        <description>We introduce the Virtual DHT idea for routing messages in a mesh network and show some related experiments.</description>
+        <author>real</author>
+        </item>
 
 </channel>
 </rss>
