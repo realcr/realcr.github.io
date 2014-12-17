@@ -183,8 +183,9 @@ distance) inside the DHT. Let's call that node \(z\). \(y\) then sends to \(x\)
 the address of \(z\). Finally, \(x\) can connect to \(z\) and join the DHT.</p>
 <p><img class="wimage"
 src="exp_virtual_dht_routing/dht_join.svg"/>
+<div class="pict_desc">
 In the picture: \(x\) wants to join the network. Marked in gray is the place in
-the ring where \(x\) is supposed to be, right after \(z\).
+the ring where \(x\) is supposed to be, right after \(z\).</div>
 <br /><br /></p>
 <p>This would work if we have a structure like the internet to support the idea of
 address. However, if we are working in a simple mesh, how could \(y\) connect
@@ -201,8 +202,9 @@ can use those two paths to construct a path \(path(x,y) + path(y,z)\) from \(x\)
 message to \(z\), \(x\) will use the path \(path(x,y) + path(y,z)\).</p>
 <p><img class="wimage"
 src="exp_virtual_dht_routing/concat_path.svg"/>
+<div class="pict_desc">
 In the picture: The path between \(x\) and \(z\) is the concatenation of paths
-between \(x\) and \(y\), \(y\) and \(z\).
+between \(x\) and \(y\), \(y\) and \(z\).</div>
 <br /><br /></p>
 <p>This method sounds like a solution, but it has a major flaw: The path
 \(path(x,y) + path(y,z)\) that we get from \(x\) to \(z\) is not optimal. It is
@@ -235,11 +237,12 @@ Identity value and the node itself) we will define two notions of distance
 </ul>
 <p><img class="wimage"
 src="exp_virtual_dht_routing/mesh_and_ring.svg"/>
+<div class="pict_desc">
 In the picture: On the right we can see an example for a mesh network. On the
 left, we can see the Virtual DHT. Note that there is no relation between
 distances on the mesh and distances in the Virtual DHT. The Virtual Distance
 between \(x_{10}\) and \(x_9\) is pretty short, however in the mesh they are
-very far.
+very far.</div>
 <br /><br /></p>
 <p>Note that two nodes could have very short Network Distance though very long
 Virtual Distance, and vice versa. It is crucial to understand that the Network
@@ -283,8 +286,9 @@ may also assume that \(x\) knows the DHT Identity of each of his neighbours.
 in the mesh).</p>
 <p><img class="wimage"
 src="exp_virtual_dht_routing/local_knowledge.svg"/>
+<div class="pict_desc">
 In the picture: The local knowledge of the node \(x_2\). All the unknown parts
-of the network are colored gray.<br /><br /></p>
+of the network are colored gray.</div><br /><br /></p>
 <p>For a node \(x\), we could traverse the whole network and find the best
 successor and predecessor (With respect to the DHT), however this will be too
 inefficient. Another idea would be to let \(x\) stay in contact only with the
@@ -349,8 +353,9 @@ assume that the set \(S_x\) of \(x\) currently contains:</p>
 }</p>
 <p><img class="wimage"
 src="exp_virtual_dht_routing/before_iter_example.svg"/>
+<div class="pict_desc">
 In the picture: Schematic picture of the Virtual DHT ordering of all the nodes
-mentioned above.<br /><br /></p>
+mentioned above.</div><br /><br /></p>
 <p>Some explanations: In the set of nodes we mention two values: ident and
 path_len. Ident is the identity of the remote node, and path_len is the length
 of the shortest network path known to the remote node. For clarity we don't
@@ -448,8 +453,9 @@ predecessor finger \(t\) of \(x\). (Note: recall that the addition here is done
 modulo \(2^s\)).</p>
 <p><img class="wimage"
 src="exp_virtual_dht_routing/dht_fingers.svg"/>
+<div class="pict_desc">
 In the picture: The Chord DHT fingers. We can see both the successor fingers
-and predecessor fingers.
+and predecessor fingers.</div>
 <br /><br /></p>
 <p>So far we only dealt with the fingers \(x+1\) and \(x-1\). Those are the
 successor finger \(0\) of \(x\) and the predecessor finger \(0\) of \(x\)
@@ -568,8 +574,9 @@ graphs. Every edge has a probability \(p = \frac{2i}{2^i}\) to exist. I chose
 finger. In the python source code, \(k\) shows up as \(fk\).</p>
 <p><img class="wimage"
 src="exp_virtual_dht_routing/conv_gnp_all_fingers_results.svg"/>
+<div class="pict_desc">
 Results for Random Erdos-Renyi networks. Horizontal axis is \(i\). Vertical
-axis is the average network path length to the best finger candidate.
+axis is the average network path length to the best finger candidate.</div>
 <br /><br /></p>
 <p>It's hard to say what is going to happen for \(i=40\) from those results, but
 for the smaller size of \(i=11\) this solution seems to be practical.</p>
@@ -598,8 +605,9 @@ sizes are estimated because a square grid has to be of size \(m\times m\). I
 chose \(m\) to be the integral part of \(\sqrt{n}\).</p>
 <p><img class="wimage"
 src="exp_virtual_dht_routing/conv_grid_all_fingers_results.svg"/>
+<div class="pict_desc">
 Results for grid networks. Horizontal axis is \(i\). Vertical axis is the
-average network path length to the best finger candidate.
+average network path length to the best finger candidate.</div>
 <br /><br /></p>
 <p>Note that in the grid networks we get much larger values for the average path
 length. Generally, in grid networks the shortest path between two arbitrary

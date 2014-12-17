@@ -176,8 +176,9 @@ the list.
 (In our list, it means that Georgine keeps the phone number of Benito).</p>
 <p><img class="wimage"
 src="dht_intro/linear_dht_circle.svg"/>
-(The phone list drawn as a ring, with lines representing the connection between
-people on the list.)<br/><br/></p>
+<div class="pict_desc">
+The phone list drawn as a ring, with lines representing the connection between
+people on the list.</div><br/><br/></p>
 <p>Now assume that Benito wants to call Edwin. How can he do that? He will first
 call Britney, because he knows her phone number. He will ask Britney for the
 name and phone number of the next person on the list. That would be Cassi.</p>
@@ -230,7 +231,8 @@ Gary's phone. He shouldn't keep remembering Georgine's phone number, because
 it is not needed anymore.</p>
 <p><img class="wimage"
 src="dht_intro/join_linear_dht_circle.svg"/>
-(The new state of the list, after Gary has joined.)<br/><br/></p>
+<div class="pict_desc">
+The new state of the list, after Gary has joined.</div><br/><br/></p>
 <h5>Analysis</h5>
 
 <p>Whenever person \(A\) wants to find person \(B\) on the list, he will have to
@@ -288,7 +290,8 @@ with this method.</p>
 way, we could get better results.</p>
 <p><img class="wimage"
 src="dht_intro/double_linear_dht_circle.svg"/>
-(The list with \(k=2\). Search operation is twice as fast.)<br/><br/></p>
+<div class="pict_desc">
+The list with \(k=2\). Search operation is twice as fast.</div><br/><br/></p>
 <h3>Chord</h3>
 
 <p>So far we have discussed a very nice phone list game, and you might not
@@ -429,13 +432,14 @@ B_s\)). We will connect \(x\) to the following nodes on the ring:</p>
 that his name is bigger than \(y\).</p>
 <p><img class="wimage"
 src="dht_intro/log_wiring.svg"/>
+<div class="pict_desc">
 In the picture: The ring represents the set \(B_s\) of possible names for
 nodes. (With \(s = 6\)). Blue points are existing nodes. Their location on the ring represents
 their name. Cuts on the ring represent the exact locations of \(x+1,
 x+2,\dots,x+2^{s-1}\). The nodes of the form \(\left\lceil{x +
 2^{q}}\right\rceil\) are marked on the ring.
 The green lines represents links from the node \(x\) to other
-nodes.<br/><br/></p>
+nodes.</div><br/><br/></p>
 <p>Follow the picture and make sure you understand what \(\ceil{x +
 2^{q}}\) means - It is the "first" (clockwise) node with a name
 bigger than the number \(x + 2^{q}\) on the ring.</p>
@@ -461,7 +465,8 @@ algorithm to make sure that indeed \(x\) eventually finds \(y\), and also how
 many iterations it takes to find \(y\).</p>
 <p><img class="wimage"
 src="dht_intro/x_search_y.svg"/>
-(Illustrated search process)<br/><br/></p>
+<div class="pict_desc">
+Illustrated search process</div><br/><br/></p>
 <h5>Analysis</h5>
 
 <p>Let us start with the simple things. How many links every node has to maintain?
@@ -555,11 +560,12 @@ where \(\floor{k}\) is the "last" node (clockwise) that has
 a name not bigger than the number \(k\).</p>
 <p><img class="wimage"
 src="dht_intro/responsible_keys.svg"/>
+<div class="pict_desc">
 In the picture: The node \(z\) (A blue dot), and some keys that \(z\) is
 responsible to keep (Small orange dots). The keys and node names are of the
 same kind (Both are from \(B_s\), so we can also draw them on the ring
 according to their value. The next node (clockwise) after \(z\) marks the end
-of the domain \(z\) has responsibility over.<br/><br/></p>
+of the domain \(z\) has responsibility over.</div><br/><br/></p>
 <p>To invoke set_value(key=k,value=v), we first search (Using our search
 algorithm) for the node that is responsible for keeping the key \(k\). This is
 done by searching for the value \(k\). We are going to find the node \(z =

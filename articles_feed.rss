@@ -71,5 +71,13 @@
         <author>real</author>
         </item>
 
+        <item>
+        <title>The Distributed Post Office: Instant hierarchy for mesh networks</title>
+        <link>http://www.freedomlayer.org/articles/dist_post_office.html</link>
+	<guid>http://www.freedomlayer.org/articles/dist_post_office.html</guid>
+        <description>We introduce the Distributed Post Office, an idea forrouting messages in a decentralized mesh network. The Distributed Post Officeis a method for creating an instant hierarchical structure from a mesh network.</description>
+        <author>real</author>
+        </item>
+
 </channel>
 </rss>
