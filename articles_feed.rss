@@ -79,5 +79,13 @@
         <author>real</author>
         </item>
 
+        <item>
+        <title>Landmarks Navigation by Random Walking</title>
+        <link>http://www.freedomlayer.org/articles/landmarks_navigation_rw.html</link>
+	<guid>http://www.freedomlayer.org/articles/landmarks_navigation_rw.html</guid>
+        <description>A random walking algorithm that uses information from network coordinates to route messages inside a decentralized mesh network.</description>
+        <author>real</author>
+        </item>
+
 </channel>
 </rss>
