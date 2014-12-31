@@ -87,5 +87,13 @@
         <author>real</author>
         </item>
 
+        <item>
+        <title>The Unified Challenge-Response: Secure Time inside the Mesh</title>
+        <link>http://www.freedomlayer.org/articles/unified_challenge_response.html</link>
+	<guid>http://www.freedomlayer.org/articles/unified_challenge_response.html</guid>
+        <description>A Distributed Algorithm for simulating time stamp inside a mesh network using cryptographic hash functions.</description>
+        <author>real</author>
+        </item>
+
 </channel>
 </rss>
