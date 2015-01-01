@@ -95,5 +95,13 @@
         <author>real</author>
         </item>
 
+        <item>
+        <title>Mesh Roadmap and unsolved Questions</title>
+        <link>http://www.freedomlayer.org/articles/roadmap.html</link>
+	<guid>http://www.freedomlayer.org/articles/roadmap.html</guid>
+        <description>Current roadmap for the creation ofa secure distributed mesh network</description>
+        <author>real</author>
+        </item>
+
 </channel>
 </rss>

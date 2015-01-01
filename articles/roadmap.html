@@ -1,0 +1,275 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-56550342-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+    <link rel="stylesheet" type="text/css" 
+	href="../code_highlight.css"/>
+
+    <link rel="stylesheet" type="text/css"
+        href="../page_style.css"/>
+
+    
+	
+
+
+<title>FreedomLayer | Articles | Mesh Roadmap and unsolved Questions</title>
+
+
+
+
+<style type="text/css">
+
+#header {
+    text-align:center;
+    width:60em;
+    clear: both; margin: 0 auto; 
+    
+}
+
+#nav {
+    text-align:center;
+    width:60em;
+    clear: both; margin: 0 auto; 
+    padding-bottom:25px;
+}
+
+#content {
+    width:48em;
+    /* Probably center: */
+    clear: both; 
+    margin: 0 auto; 
+}
+
+#footer {
+    padding-top:25px;
+    text-align:center;
+    clear:both;
+    margin: 0 auto;
+}
+#copyright_notice {
+    font-size:50%;
+}
+
+#email_address {
+    color:#808080;
+}
+</style> 
+
+</head>
+<body>
+
+<div id="header">
+<h1>Freedom Layer</h1>
+</div>
+<div id="nav">
+    
+    <nav>
+    <a href="../index.html">Home</a> |
+    <a href="../pages/links.html">Links</a> |
+    <a href="../blog_index.html">Blog</a> |
+    <a href="../articles_index.html">Articles</a> |
+    <a href="../pages/mailing_lists.html">Mailing Lists</a> |
+    <a href="../pages/donate.html">Donate</a> |
+    <a href="../pages/about.html">About</a>
+    </nav>
+
+
+</div>
+<div id="content">
+    
+	
+
+
+<h1>Articles</h1>
+<h2>Mesh Roadmap and unsolved Questions</h2> by real 
+
+<!--
+abs function.
+-->
+
+<p>\(
+\newcommand{\paren}[1]{\left({#1}\right)}
+\)</p>
+<h4>Unsolved Questions</h4>
+
+<h5>The Routing Question</h5>
+
+<p>To have a working mesh network, we have to be able to route messages. Even if
+we consider only friendly environments (There are no adversaries and all nodes
+are correct), <strong>At this point we don't know of any routing algorithm that
+scales well</strong>. We have some ideas, but we don't know to prove that they scale.</p>
+<p>The two most promising ideas I currently know of to route messages in a large
+decentralized networks are:</p>
+<ul>
+<li>
+<p><a href="virtual_dht_routing.html">Virtual DHT
+    Routing</a></p>
+</li>
+<li>
+<p><a href="landmarks_navigation_rw.html">Landmarks
+    Navigation</a></p>
+</li>
+</ul>
+<p>For Landmarks Navigation we only showed a very naive routing method (Random
+walking), and currently we don't know of a better algorithm to use the Network
+Coordinates information for navigation. I think there should be a better way to
+route messages using Network Coordinates. It requires some more thinking.</p>
+<p>The Virtual DHT Routing idea seems to have nice results, be we never checked it
+for networks of size larger than \(2^{15}\). Lacking any rigorous ideas of how
+it works, we don't know for sure what is going to happen for large networks.</p>
+<p>Checking the results, I found that the paths we get from nodes to their best
+finger candidates are not always the shortest. It might be possible to change
+the algorithm so that those paths are always as short as possible. I have some
+ideas about how to do it, but I still have to check them.</p>
+<h5>Incentives and Security</h5>
+
+<p>A working routing mechanism is very nice to have, but it is not enough. In
+practice, the network nodes will not cooperate if they don't have the right
+incentives to do so. In addition, Adversaries will want to DoS the network or
+subvert it somehow.</p>
+<p>We put into some more detail a list of our main requirements:</p>
+<ul>
+<li>
+<p>Nodes in the mesh will have incentives to pass messages to their destination.</p>
+</li>
+<li>
+<p>Sybil attack resilience: A computationally / networkly bounded adversary will
+  not be able to insert too many corrupt nodes into the network.</p>
+</li>
+<li>
+<p>DoS will be expensive to perform.</p>
+</li>
+<li>
+<p>Leaf nodes (Nodes that are in the "edge" of the network. For example: Nodes
+  that are connected to only one other node) will be able to participate, and
+  their messages will be passed.</p>
+</li>
+</ul>
+<h4>Current Plan</h4>
+
+<p>I list here some of our current efforts. If you have an idea or a suggestion,
+please share it at the mailing list, or send me a message directly.</p>
+<h5>Ideas regarding Routing</h5>
+
+<p>We already know of a simple Virtual DHT Routing algorithm. I want to
+improve/change it, to get the following properties:</p>
+<ul>
+<li>
+<p>The path between a node \(x\) and his best candidates for fingers are the
+  shortest paths possible. This is an important property if we plan to use this
+  routing algorithm for very large networks.</p>
+</li>
+<li>
+<p>The Network will always stay connected after every iteration of updating the
+  finger candidates. Note that the current simple solution doesn't promise that
+  property.</p>
+</li>
+</ul>
+<h5>Ideas regarding Incentives and Security</h5>
+
+<p>I discuss here Incentives and Security ideas for the Virtual DHT Routing
+method.</p>
+<p>Here are the security issues we need to deal with:</p>
+<ul>
+<li>
+<p>Sybil attack. What happens if some Adversary inserts lots of corrupt nodes
+  into the network? How can we make sure it doesn't happen?</p>
+</li>
+<li>
+<p>Eclipse attack. An adversary could cause much damage even using only one
+  corrupt node. A corrupt node could claim to have many DHT identities, and
+  then block a whole region of the DHT namespace. The corrupt node will turn into
+  a "messages magnet", taking a large portion of the network messages.</p>
+</li>
+</ul>
+<p>Some issues regarding incentives:</p>
+<ul>
+<li>
+<p>A message from \(x\) to \(y\) in the network passes through other nodes. Why
+  would those nodes want to pass the message? They need to be compensated
+  somehow, in terms of some currency or reputation.</p>
+</li>
+<li>
+<p>In a mesh network, the value that a node contributes is mostly his ability to
+  bridge and forward messages. However, what about a node that is in the "edge"
+  of the network? It is not much a bridge. It can't contribute much in terms of
+  bandwidth or communication. If we just rely on communication as network
+  contribution, these kind of nodes will never be able to participate in the
+  network. One way to solve it might be to introduce other types of possibilities
+  to contribute.</p>
+</li>
+</ul>
+
+<br/><br/>
+<h3>What to do now?</h3>
+<ul>
+
+<li>Have a question, comment or an interesting idea? 
+Send it at the <a
+href="../pages/mailing_lists.html">
+Research mailing list</a>, or contact us at real(&)freedomlayer.org</li>
+
+<li>
+<a href="../articles_feed.rss">
+<img src="../pics/feed_icon_small.png"/>
+Subscribe</a> to the articles feed.
+</li>
+
+<li>Read other articles at the <a
+href="../articles_index.html">articles index</a>.</li>
+
+<li>Read <a href="../pages/about.html">about</a> the Freedom Layer project.</li>
+
+</ul>
+
+
+</div>
+<div id="footer">
+    
+
+<div id="email_address">real(&)freedomlayer.org</div>
+<div id="copyright_notice">
+<br/><span
+xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Freedom Layer</span>
+is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.
+
+</div>
+
+</div>
+
+</body>
+</html>
+
+
+
